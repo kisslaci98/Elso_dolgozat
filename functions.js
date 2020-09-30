@@ -30,6 +30,35 @@ function upload() {
     let Name = document.getElementById("name").value;
     let Class = document.getElementById("class").value;
     console.log(Name + ' ' + Class);
-    students.push({ 'class' : `${Class}`, 'name' : `${Name}`});
+    
+    let nameArray = [];
+
+    students.forEach((student) => {
+        nameArray.push(student.name);
+    });
+
+    if (nameArray.includes(Name)) {
+        window.alert("Ez a név már szerepel a listában.");
+    } else { 
+        students.push({'class' : `${Class}`, 'name' : `${Name}`});
+    }
+    /*let decide = false;
+    students.forEach((student) => {
+        if (student.name == Name) {
+            decide = true;
+            return;
+        }
+    });
+    if (decide) {
+        window.alert("Ez a név már szerepel a listában.");
+    }
+    else {
+        students.push({ "class" : `${Class}`, "name" : `${Name}`})
+    }*/
+    getClass();
+}
+
+function deletar() {
+    students.pop();
     getClass();
 }
